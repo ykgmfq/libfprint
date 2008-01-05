@@ -1,6 +1,6 @@
 Name:           libfprint
-Version:        0.0.4 
-Release:        3%{?dist}
+Version:        0.0.5 
+Release:        2%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -9,7 +9,8 @@ URL:            http://www.reactivated.net/fprint/wiki/Main_Page
 Source0:        http://downloads.sourceforge.net/fprint/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  libusb-devel ImageMagick-devel glib2-devel
+BuildRequires:  libusb-devel ImageMagick-devel glib2-devel openssl-devel 
+Requires:       ConsoleKit
 
 %description
 The fprint project aims to plug a gap in the Linux desktop: support for 
@@ -34,7 +35,7 @@ developing applications that use %{name}.
 
 
 %build
-%configure --disable-static
+%configure --disable-static 
 make %{?_smp_mflags}
 
 
@@ -66,6 +67,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Jan 05 2008 Pingou <pingoufc4@yahoo.fr> 0.0.5-2
+- Change on the BuildRequires
+
+* Sat Jan 05 2008 Pingou <pingoufc4@yahoo.fr> 0.0.5-1
+- Update to version 0.0.5
+
 * Sat Dec 01 2007 Pingou <pingoufc4@yahoo.fr> 0.0.4-3
 - Changes on the Requires
 
