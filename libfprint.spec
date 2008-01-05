@@ -1,6 +1,6 @@
 Name:           libfprint
-Version:        0.0.4 
-Release:        3%{?dist}
+Version:        0.0.5 
+Release:        1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Jan 05 2008 Pingou <pingoufc4@yahoo.fr> 0.0.5-1
+- Update to version 0.0.5
+
 * Sat Dec 01 2007 Pingou <pingoufc4@yahoo.fr> 0.0.4-3
 - Changes on the Requires
 
