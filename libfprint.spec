@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.0.5 
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -9,7 +9,7 @@ URL:            http://www.reactivated.net/fprint/wiki/Main_Page
 Source0:        http://downloads.sourceforge.net/fprint/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  libusb-devel ImageMagick-devel glib2-devel openssl-devel 
+BuildRequires:  libusb-devel libMagickCore-devel libMagickWand-devel glib2-devel openssl-devel 
 Requires:       ConsoleKit
 
 %description
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue May 13 2008  Pingou <pingoufc4@yahoo.fr> 0.0.5-4
+- Update the Requires due to the change on ImageMagick
+
 * Tue Feb 19 2008 Fedora Release Engineering <rel-eng@fedoraproject.org> - 0.0.5-3
 - Autorebuild for GCC 4.3
 
