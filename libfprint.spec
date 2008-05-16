@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.0.5 
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -9,7 +9,7 @@ URL:            http://www.reactivated.net/fprint/wiki/Main_Page
 Source0:        http://downloads.sourceforge.net/fprint/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  libusb-devel libMagickCore libMagickWand glib2-devel openssl-devel 
+BuildRequires:  libusb-devel ImageMagick-devel glib2-devel openssl-devel 
 Requires:       ConsoleKit
 
 %description
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue May 13 2008  Pingou <pingoufc4@yahoo.fr> 0.0.5-6
+- Correction on the Build Requires
+
 * Tue May 13 2008  Pingou <pingoufc4@yahoo.fr> 0.0.5-5
 - Correction on the Build Requires
 
