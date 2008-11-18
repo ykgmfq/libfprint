@@ -1,22 +1,21 @@
 Name:           libfprint
-Version:        0.0.5 
-Release:        6%{?dist}
+Version:        0.1.0
+Release:        0.pre1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.reactivated.net/fprint/wiki/Main_Page 
-Source0:        http://downloads.sourceforge.net/fprint/%{name}-%{version}.tar.bz2
+Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre1.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  libusb-devel ImageMagick-devel glib2-devel openssl-devel 
+# FIXME remove the ImageMagick dependency when we either have the
+# gdk-pixbuf support merged, or disable the driver that requires it (F10)
+BuildRequires:  libusb1-devel ImageMagick-devel glib2-devel openssl-devel 
 Requires:       ConsoleKit
 
 %description
-The fprint project aims to plug a gap in the Linux desktop: support for 
-consumer fingerprint reader devices.
-This project provides the drivers for the fingerprint scanner including
-the ones with a usb id 08ff:2580 
+libfprint offers support for consumer fingerprint reader devices.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -31,7 +30,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q
+%setup -q -n %{name}-0.1.0-pre1
 
 
 %build
@@ -65,8 +64,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/%{name}.pc
+%{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 
 %changelog
+* Tue Nov 04 2008 - Bastien Nocera <bnocera@redhat.com> - 0.1.0-0.pre1
+- Update to 0.1.0-pre1
+
 * Tue May 13 2008  Pingou <pingoufc4@yahoo.fr> 0.0.5-6
 - Correction on the Build Requires
 
