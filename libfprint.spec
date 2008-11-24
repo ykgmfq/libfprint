@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        1.pre1%{?dist}
+Release:        2.pre1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -12,6 +12,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # FIXME remove the ImageMagick dependency when we either have the
 # gdk-pixbuf support merged, or disable the driver that requires it (F10)
 BuildRequires:  libusb1-devel ImageMagick-devel glib2-devel openssl-devel 
+BuildRequires:  doxygen
 Requires:       ConsoleKit
 
 %description
@@ -36,7 +37,9 @@ developing applications that use %{name}.
 %build
 %configure --disable-static 
 make %{?_smp_mflags}
-
+pushd doc
+make docs
+popd
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -60,13 +63,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(-,root,root,-)
-%doc HACKING
+%doc HACKING doc/html
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/%{name}.pc
 %{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 
 %changelog
+* Mon Nov 24 2008 - Bastien Nocera <bnocera@redhat.com> - 0.1.0-2.pre1
+- And add some API docs
+
 * Tue Nov 18 2008 - Bastien Nocera <bnocera@redhat.com> - 0.1.0-1.pre1
 - Fix build
 
