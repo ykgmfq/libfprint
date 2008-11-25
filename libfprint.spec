@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        2.pre1%{?dist}
+Release:        3.pre1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -8,6 +8,7 @@ License:        LGPLv2+
 URL:            http://www.reactivated.net/fprint/wiki/Main_Page 
 Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre1.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Patch0:         0002-Fix-fp_get_pollfds.patch
 
 # FIXME remove the ImageMagick dependency when we either have the
 # gdk-pixbuf support merged, or disable the driver that requires it (F10)
@@ -32,7 +33,7 @@ developing applications that use %{name}.
 
 %prep
 %setup -q -n %{name}-0.1.0-pre1
-
+%patch0 -p1
 
 %build
 %configure --disable-static 
@@ -70,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 
 %changelog
+* Tue Nov 25 2008 - Bastien Nocera <bnocera@redhat.com> - 0.1.0-3.pre1
+- Fix possible crasher in libfprint when setting up the fds for polling
+
 * Mon Nov 24 2008 - Bastien Nocera <bnocera@redhat.com> - 0.1.0-2.pre1
 - And add some API docs
 
