@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        3.pre1%{?dist}
+Release:        4.pre1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -71,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 
 %changelog
+* Sat Jan 17 2009 Tomas Mraz <tmraz@redhat.com> - 0.1.0-4.pre1
+- rebuild with new openssl
+
 * Tue Nov 25 2008 - Bastien Nocera <bnocera@redhat.com> - 0.1.0-3.pre1
 - Fix possible crasher in libfprint when setting up the fds for polling
 
