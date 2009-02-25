@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        4.pre1%{?dist}
+Release:        5.pre1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -71,6 +71,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 
 %changelog
+* Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.1.0-5.pre1
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Sat Jan 17 2009 Tomas Mraz <tmraz@redhat.com> - 0.1.0-4.pre1
 - rebuild with new openssl
 
