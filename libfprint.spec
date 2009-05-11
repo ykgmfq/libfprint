@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        6.pre1%{?dist}
+Release:        6.pre1%{?dist}.1
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -9,6 +9,7 @@ URL:            http://www.reactivated.net/fprint/wiki/Main_Page
 Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre1.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Patch0:         0002-Fix-fp_get_pollfds.patch
+ExcludeArch:    s390 s390x
 
 # FIXME remove the ImageMagick dependency when we either have the
 # gdk-pixbuf support merged, or disable the driver that requires it (F10)
@@ -71,6 +72,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 
 %changelog
+* Tue Apr 21 2009 Karsten Hopp <karsten@redhat.com> 0.1.0-6.pre1.1
+- Excludearch s390 s390x, we don't have USB devices there and this package
+  doesn't build without USB support
+
 * Mon Mar 09 2009 pingou <pingou@pingoured.fr> - 0.1.0-6.pre1
 - Rebuilt for rawhide
 
