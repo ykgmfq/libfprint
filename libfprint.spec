@@ -15,7 +15,7 @@ ExcludeArch:    s390 s390x
 # FIXME remove the ImageMagick dependency when we either have the
 # gdk-pixbuf support merged, or disable the driver that requires it (F10)
 BuildRequires:  libusb1-devel ImageMagick-devel glib2-devel openssl-devel 
-BuildRequires:  doxygen
+BuildRequires:  doxygen autoreconf
 Requires:       ConsoleKit
 
 %description
@@ -79,6 +79,7 @@ rm -rf $RPM_BUILD_ROOT
 * Tue Jun 09 2009 Matthew Garrett <mjg@redhat.com> 0.1.0-7.pre1
 - fprint-add-udev-rules.patch - build udev rules for autosuspend
 - move hal fdi into the main package rather than -devel
+- add autoreconf as a build depend while carrying the udev diff
 
 * Tue Apr 21 2009 Karsten Hopp <karsten@redhat.com> 0.1.0-6.pre1.1
 - Excludearch s390 s390x, we don't have USB devices there and this package
