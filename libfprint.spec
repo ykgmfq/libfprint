@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        6.pre1%{?dist}.1
+Release:        7.pre1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -9,6 +9,7 @@ URL:            http://www.reactivated.net/fprint/wiki/Main_Page
 Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre1.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Patch0:         0002-Fix-fp_get_pollfds.patch
+Patch1:		fprint-add-udev-rules.patch
 ExcludeArch:    s390 s390x
 
 # FIXME remove the ImageMagick dependency when we either have the
@@ -35,8 +36,10 @@ developing applications that use %{name}.
 %prep
 %setup -q -n %{name}-0.1.0-pre1
 %patch0 -p1
+%patch1 -p1
 
 %build
+autoreconf -f -i
 %configure --disable-static 
 make %{?_smp_mflags}
 pushd doc
@@ -62,6 +65,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc COPYING INSTALL NEWS TODO THANKS AUTHORS
 %{_libdir}/*.so.*
+%{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
+%{_sysconfdir}/udev/rules.d/60-fprint-autosuspend.rules
 
 %files devel
 %defattr(-,root,root,-)
@@ -69,9 +74,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/%{name}.pc
-%{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 
 %changelog
+* Tue Jun 09 2009 Matthew Garrett <mjg@redhat.com> 0.1.0-7.pre1
+- fprint-add-udev-rules.patch - build udev rules for autosuspend
+- move hal fdi into the main package rather than -devel
+
 * Tue Apr 21 2009 Karsten Hopp <karsten@redhat.com> 0.1.0-6.pre1.1
 - Excludearch s390 s390x, we don't have USB devices there and this package
   doesn't build without USB support
