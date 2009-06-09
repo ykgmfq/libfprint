@@ -15,7 +15,7 @@ ExcludeArch:    s390 s390x
 # FIXME remove the ImageMagick dependency when we either have the
 # gdk-pixbuf support merged, or disable the driver that requires it (F10)
 BuildRequires:  libusb1-devel ImageMagick-devel glib2-devel openssl-devel 
-BuildRequires:  doxygen autoconf
+BuildRequires:  doxygen autoconf automake
 Requires:       ConsoleKit
 
 %description
