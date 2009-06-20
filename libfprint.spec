@@ -1,14 +1,13 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        7.pre1%{?dist}
+Release:        8.pre2%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.reactivated.net/fprint/wiki/Main_Page 
-Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre1.tar.bz2
+Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre2.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Patch0:         0002-Fix-fp_get_pollfds.patch
 Patch1:		fprint-add-udev-rules.patch
 ExcludeArch:    s390 s390x
 
@@ -35,7 +34,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q -n %{name}-0.1.0-pre1
-%patch0 -p1
 %patch1 -p1
 
 %build
@@ -76,6 +74,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Jun 20 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-8.pre2
+- Update to 0.1.0-pre2
+
 * Tue Jun 09 2009 Matthew Garrett <mjg@redhat.com> 0.1.0-7.pre1
 - fprint-add-udev-rules.patch - build udev rules for autosuspend
 - move hal fdi into the main package rather than -devel
