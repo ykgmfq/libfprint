@@ -6,7 +6,7 @@ Summary:        Tool kit for fingerprint scanner
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.reactivated.net/fprint/wiki/Main_Page 
-Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre1.tar.bz2
+Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre2.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExcludeArch:    s390 s390x
 
