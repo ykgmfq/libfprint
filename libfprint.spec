@@ -33,7 +33,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q -n %{name}-0.1.0-pre1
+%setup -q -n %{name}-0.1.0-pre2
 %patch1 -p1
 
 %build
