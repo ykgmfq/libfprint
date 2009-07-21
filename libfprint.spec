@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        8.pre2%{?dist}
+Release:        9.pre2%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -9,11 +9,11 @@ URL:            http://www.reactivated.net/fprint/wiki/Main_Page
 Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre2.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Patch1:		fprint-add-udev-rules.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=472103
+Patch2:		0001-Add-gdk-pixbuf-support.patch
 ExcludeArch:    s390 s390x
 
-# FIXME remove the ImageMagick dependency when we either have the
-# gdk-pixbuf support merged, or disable the driver that requires it (F10)
-BuildRequires:  libusb1-devel ImageMagick-devel glib2-devel openssl-devel 
+BuildRequires:  libusb1-devel glib2-devel gtk2-devel openssl-devel 
 BuildRequires:  doxygen autoconf automake libtool
 Requires:       ConsoleKit
 
@@ -35,6 +35,7 @@ developing applications that use %{name}.
 %prep
 %setup -q -n %{name}-0.1.0-pre2
 %patch1 -p1
+%patch2 -p1
 
 %build
 autoreconf -f -i
@@ -74,6 +75,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Jul 21 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-9.pre2
+- Use gdk-pixbuf for image manipulation instead of ImageMagick (#472103)
+
 * Sat Jun 20 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-8.pre2
 - Update to 0.1.0-pre2
 
