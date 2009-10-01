@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        11.pre2%{?dist}
+Release:        12.pre2%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -8,7 +8,8 @@ License:        LGPLv2+
 URL:            http://www.reactivated.net/fprint/wiki/Main_Page 
 Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre2.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Patch1:		fprint-add-udev-rules.patch
+# http://thread.gmane.org/gmane.linux.fprint/1321
+Patch1:		0001-Add-udev-rules-to-set-devices-to-autosuspend.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=472103
 Patch2:		0001-Add-gdk-pixbuf-support.patch
 ExcludeArch:    s390 s390x
@@ -75,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Oct 01 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-12.pre2
+- Update udev autosuspend rules and disable SGS Thomson reader
+
 * Fri Aug 21 2009 Tomas Mraz <tmraz@redhat.com> - 0.1.0-11.pre2
 - rebuilt with new openssl
 
