@@ -1,6 +1,53 @@
---- libfprint-0.1.0-pre1/libfprint/fprint-list-udev-rules.c	1970-01-01 01:00:00.000000000 +0100
-+++ libfprint-0.1.0-pre1.bak/libfprint/fprint-list-udev-rules.c	2009-06-09 18:30:20.000000000 +0100
-@@ -0,0 +1,72 @@
+From c60d18b9e5e7d62c27d29d4f386a296edc3c491d Mon Sep 17 00:00:00 2001
+From: Matthew Garrett <mjg@redhat.com>
+Date: Thu, 1 Oct 2009 15:08:41 +0100
+Subject: [PATCH] Add udev rules to set devices to autosuspend
+
+Most fingerprint readers can be suspended safely, so use
+the udev rules to autosuspend them when they appear.
+
+The script itself contains whitelists and blacklists.
+---
+ libfprint/Makefile.am              |   13 +++++-
+ libfprint/fprint-list-udev-rules.c |   73 ++++++++++++++++++++++++++++++++++++
+ 2 files changed, 84 insertions(+), 2 deletions(-)
+ create mode 100644 libfprint/fprint-list-udev-rules.c
+
+diff --git a/libfprint/Makefile.am b/libfprint/Makefile.am
+index 0eb5ca6..7f05468 100644
+--- a/libfprint/Makefile.am
++++ b/libfprint/Makefile.am
+@@ -1,6 +1,6 @@
+ lib_LTLIBRARIES = libfprint.la
+-noinst_PROGRAMS = fprint-list-hal-info
+-MOSTLYCLEANFILES = $(hal_fdi_DATA)
++noinst_PROGRAMS = fprint-list-hal-info fprint-list-udev-rules
++MOSTLYCLEANFILES = $(hal_fdi_DATA) $(udev_rules_DATA)
+ 
+ UPEKTS_SRC = drivers/upekts.c
+ UPEKTC_SRC = drivers/upektc.c
+@@ -66,6 +66,15 @@ hal_fdidir = $(datadir)/hal/fdi/information/20thirdparty/
+ $(hal_fdi_DATA): fprint-list-hal-info
+ 	$(builddir)/fprint-list-hal-info > $@
+ 
++fprint_list_udev_rules_SOURCES = fprint-list-udev-rules.c
++fprint_list_udev_rules_CFLAGS = -fvisibility=hidden -I$(srcdir)/nbis/include $(LIBUSB_CFLAGS) $(GLIB_CFLAGS) $(IMAGEMAGICK_CFLAGS) $(CRYPTO_CFLAGS) $(AM_CFLAGS)
++fprint_list_udev_rules_LDADD = $(builddir)/libfprint.la
++
++udev_rules_DATA = 60-fprint-autosuspend.rules
++udev_rulesdir = $(sysconfdir)/udev/rules.d/
++
++$(udev_rules_DATA): fprint-list-udev-rules
++	$(builddir)/fprint-list-udev-rules > $@
+ 
+ if ENABLE_UPEKTS
+ DRIVER_SRC += $(UPEKTS_SRC)
+diff --git a/libfprint/fprint-list-udev-rules.c b/libfprint/fprint-list-udev-rules.c
+new file mode 100644
+index 0000000..874e41a
+--- /dev/null
++++ b/libfprint/fprint-list-udev-rules.c
+@@ -0,0 +1,73 @@
 +/*
 + * Copyright (C) 2009 Red Hat <mjg@redhat.com> 
 + * Copyright (C) 2008 Bastien Nocera <hadess@hadess.net>
@@ -32,6 +79,7 @@
 +};
 +
 +static const struct usb_id blacklist_id_table[] = {
++    { .vendor = 0x0483, .product = 0x2016 },
 +    { 0, 0, 0 },
 +};
 +
@@ -73,30 +121,6 @@
 +
 +    return 0;
 +}
---- libfprint-0.1.0-pre1/libfprint/Makefile.am	2008-11-18 17:18:21.000000000 +0000
-+++ libfprint-0.1.0-pre1.bak/libfprint/Makefile.am	2009-06-09 18:32:10.000000000 +0100
-@@ -1,6 +1,6 @@
- lib_LTLIBRARIES = libfprint.la
--noinst_PROGRAMS = fprint-list-hal-info
--MOSTLYCLEANFILES = $(hal_fdi_DATA)
-+noinst_PROGRAMS = fprint-list-hal-info fprint-list-udev-rules
-+MOSTLYCLEANFILES = $(hal_fdi_DATA) $(udev_rules_DATA)
- 
- UPEKTS_SRC = drivers/upekts.c
- UPEKTC_SRC = drivers/upektc.c
-@@ -66,6 +66,15 @@
- $(hal_fdi_DATA): fprint-list-hal-info
- 	$(builddir)/fprint-list-hal-info > $@
- 
-+fprint_list_udev_rules_SOURCES = fprint-list-udev-rules.c
-+fprint_list_udev_rules_CFLAGS = -fvisibility=hidden -I$(srcdir)/nbis/include $(LIBUSB_CFLAGS) $(GLIB_CFLAGS) $(IMAGEMAGICK_CFLAGS) $(CRYPTO_CFLAGS) $(AM_CFLAGS)
-+fprint_list_udev_rules_LDADD = $(builddir)/libfprint.la
-+
-+udev_rules_DATA = 60-fprint-autosuspend.rules
-+udev_rulesdir = $(sysconfdir)/udev/rules.d/
-+
-+$(udev_rules_DATA): fprint-list-udev-rules
-+	$(builddir)/fprint-list-udev-rules > $@
- 
- if ENABLE_UPEKTS
- DRIVER_SRC += $(UPEKTS_SRC)
+-- 
+1.6.4.4
+
