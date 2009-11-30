@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        12.pre2%{?dist}
+Release:        13.pre2%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -12,6 +12,9 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Patch1:		0001-Add-udev-rules-to-set-devices-to-autosuspend.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=472103
 Patch2:		0001-Add-gdk-pixbuf-support.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=499732
+Source1:	aes1610.c
+Patch3:		libfprint-aes1610-driver.patch
 ExcludeArch:    s390 s390x
 
 BuildRequires:  libusb1-devel glib2-devel gtk2-devel openssl-devel 
@@ -37,6 +40,8 @@ developing applications that use %{name}.
 %setup -q -n %{name}-0.1.0-pre2
 %patch1 -p1
 %patch2 -p1
+cp -a %{SOURCE1} libfprint/drivers
+%patch3 -p1 -b .aes1610
 
 %build
 autoreconf -f -i
@@ -76,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Mon Nov 30 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-13.pre2
+- Add aes1610 driver (#499732)
+
 * Thu Oct 01 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-12.pre2
 - Update udev autosuspend rules and disable SGS Thomson reader
 
