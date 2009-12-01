@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        13.pre2%{?dist}
+Release:        14.pre2%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -81,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Dec 01 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-14.pre2
+- Update AES1610 patch (#499732)
+
 * Mon Nov 30 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-13.pre2
 - Add aes1610 driver (#499732)
 
