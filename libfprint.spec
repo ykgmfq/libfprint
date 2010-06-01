@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        15.pre2%{?dist}
+Release:        16.pre2%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -69,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING INSTALL NEWS TODO THANKS AUTHORS
+%doc COPYING INSTALL NEWS TODO THANKS AUTHORS README
 %{_libdir}/*.so.*
 %{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 %{_sysconfdir}/udev/rules.d/60-fprint-autosuspend.rules
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Jun 01 2010 Bastien Nocera <bnocera@redhat.com> 0.1.0-16.pre2
+- Add README to package
+
 * Wed Jan 20 2010 Bastien Nocera <bnocera@redhat.com> 0.1.0-15.pre2
 - Require hal-filesystem for the fdi file
 
