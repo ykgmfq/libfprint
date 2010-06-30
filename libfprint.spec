@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.1.0
-Release:        16.pre2%{?dist}
+Release:        16.pre3%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -82,6 +82,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Wed Jun 30 2010 Matthew Garrett <mjg@redhat.com> 0.1.0-16.pre3
+- Fix #505438 to avoid message on boot on some systems
+
 * Tue Jun 01 2010 Bastien Nocera <bnocera@redhat.com> 0.1.0-16.pre2
 - Add README to package
 

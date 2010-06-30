@@ -102,7 +102,7 @@ index 0000000..874e41a
 +	if (blacklist)
 +	    continue;
 +
-+	printf ("SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"%04x\", ATTRS{idProduct}==\"%04x\", ATTR{power/level}=\"auto\"\n", driver->id_table[i].vendor, driver->id_table[i].product);
++	printf ("SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"%04x\", ATTRS{idProduct}==\"%04x\", ATTRS{dev}==\"*\", ATTR{power/level}=\"auto\"\n", driver->id_table[i].vendor, driver->id_table[i].product);
 +    }
 +}
 +
