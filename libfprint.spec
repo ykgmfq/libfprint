@@ -1,20 +1,13 @@
 Name:           libfprint
-Version:        0.1.0
-Release:        14.pre2%{?dist}
+Version:        0.2.0
+Release:        1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.reactivated.net/fprint/wiki/Main_Page 
-Source0:        http://downloads.sourceforge.net/fprint/%{name}-0.1.0-pre2.tar.bz2
+Source0:        http://freedesktop.org/~hadess/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-# http://thread.gmane.org/gmane.linux.fprint/1321
-Patch1:		0001-Add-udev-rules-to-set-devices-to-autosuspend.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=472103
-Patch2:		0001-Add-gdk-pixbuf-support.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=499732
-Source1:	aes1610.c
-Patch3:		libfprint-aes1610-driver.patch
 ExcludeArch:    s390 s390x
 
 BuildRequires:  libusb1-devel glib2-devel gtk2-devel openssl-devel 
@@ -37,14 +30,9 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q -n %{name}-0.1.0-pre2
-%patch1 -p1
-%patch2 -p1
-cp -a %{SOURCE1} libfprint/drivers
-%patch3 -p1 -b .aes1610
+%setup -q
 
 %build
-autoreconf -f -i
 %configure --disable-static 
 make %{?_smp_mflags}
 pushd doc
@@ -81,6 +69,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Aug 19 2010 Bastien Nocera <bnocera@redhat.com> 0.2.0-1
+- Update to 0.2.0
+
 * Tue Dec 01 2009 Bastien Nocera <bnocera@redhat.com> 0.1.0-14.pre2
 - Update AES1610 patch (#499732)
 
