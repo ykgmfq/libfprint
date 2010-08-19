@@ -31,7 +31,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q -n %{name}-0.1.0-pre2
+%setup -q
 
 %build
 %configure --disable-static 
