@@ -10,7 +10,7 @@ Source0:        http://freedesktop.org/~hadess/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExcludeArch:    s390 s390x
 
-BuildRequires:  libusb1-devel glib2-devel gtk2-devel openssl-devel 
+BuildRequires:  libusb1-devel glib2-devel gtk2-devel nss-devel
 BuildRequires:  doxygen autoconf automake libtool
 Requires:       ConsoleKit
 Requires:       hal-filesystem
