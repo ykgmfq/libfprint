@@ -1,5 +1,5 @@
 Name:           libfprint
-Version:        0.2.0
+Version:        0.3.0
 Release:        1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
@@ -10,10 +10,9 @@ Source0:        http://freedesktop.org/~hadess/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExcludeArch:    s390 s390x
 
-BuildRequires:  libusb1-devel glib2-devel gtk2-devel openssl-devel 
+BuildRequires:  libusb1-devel glib2-devel gtk2-devel nss-devel
 BuildRequires:  doxygen autoconf automake libtool
 Requires:       ConsoleKit
-Requires:       hal-filesystem
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -59,7 +58,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc COPYING INSTALL NEWS TODO THANKS AUTHORS README
 %{_libdir}/*.so.*
-%{_datadir}/hal/fdi/information/20thirdparty/10-fingerprint-reader-fprint.fdi
 %{_sysconfdir}/udev/rules.d/60-fprint-autosuspend.rules
 
 %files devel
@@ -70,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Wed Sep 08 2010 Bastien Nocera <bnocera@redhat.com> 0.3.0-1
+- Update to 0.3.0
+
 * Thu Aug 19 2010 Bastien Nocera <bnocera@redhat.com> 0.2.0-1
 - Update to 0.2.0
 
