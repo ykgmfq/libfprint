@@ -1,6 +1,6 @@
 Name:           libfprint
-Version:        0.3.0
-Release:        3%{?dist}
+Version:        0.4.0
+Release:        1%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -68,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Mon Apr 18 2011 Bastien Nocera <bnocera@redhat.com> 0.4.0-1
+- Update to 0.4.0
+
 * Mon Nov 07 2011 Adam Jackson <ajax@redhat.com> 0.3.0-3
 - Rebuild for libpng 1.5
 
