@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.4.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -12,7 +12,6 @@ ExcludeArch:    s390 s390x
 
 BuildRequires:  libusb1-devel glib2-devel gtk2-devel nss-devel
 BuildRequires:  doxygen autoconf automake libtool
-Requires:       ConsoleKit
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -68,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Mon Nov 21 2011 Adam Jackson <ajax@redhat.com> 0.4.0-2
+- Rebuild without Requires: ConsoleKit, going away in F17
+
 * Thu Nov 10 2011 Bastien Nocera <bnocera@redhat.com> 0.4.0-1
 - Update to 0.4.0
 
