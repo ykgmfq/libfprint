@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.4.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Tool kit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Fri Jan 13 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Mon Nov 21 2011 Adam Jackson <ajax@redhat.com> 0.4.0-2
 - Rebuild without Requires: ConsoleKit, going away in F17
 
