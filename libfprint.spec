@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.4.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -67,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Fri May 18 2012 Matthias Clasen <mclasen@redhat.com> - 0.4.0-4
 - Drop broken and useless udev rules (#744637)
 
