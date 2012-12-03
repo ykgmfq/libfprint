@@ -1,12 +1,12 @@
 Name:           libfprint
-Version:        0.4.0
-Release:        5%{?dist}
+Version:        0.5.0
+Release:        1%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
-URL:            http://www.reactivated.net/fprint/wiki/Main_Page 
-Source0:        http://freedesktop.org/~hadess/%{name}-%{version}.tar.bz2
+URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
+Source0:        http://freedesktop.org/~hadess/%{name}-%{version}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExcludeArch:    s390 s390x
 
@@ -43,8 +43,6 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
-rm $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/60-fprint-autosuspend.rules
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -58,6 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc COPYING INSTALL NEWS TODO THANKS AUTHORS README
 %{_libdir}/*.so.*
+%{_sysconfdir}/udev/rules.d/60-fprint-autosuspend.rules
 
 %files devel
 %defattr(-,root,root,-)
@@ -67,6 +66,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Mon Dec 03 2012 Bastien Nocera <bnocera@redhat.com> 0.5.0-1
+- Update to 0.5.0
+- Re-add not useless udev rules
+
 * Thu Jul 19 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.4.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
