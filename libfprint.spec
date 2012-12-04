@@ -56,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc COPYING INSTALL NEWS TODO THANKS AUTHORS README
 %{_libdir}/*.so.*
-%{_sysconfdir}/udev/rules.d/60-fprint-autosuspend.rules
+%{_prefix}/lib/udev/rules.d/60-fprint-autosuspend.rules
 
 %files devel
 %defattr(-,root,root,-)
