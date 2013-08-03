@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.5.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.5.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.5.0-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
