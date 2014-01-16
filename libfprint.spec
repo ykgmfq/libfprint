@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.5.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -54,7 +54,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING INSTALL NEWS TODO THANKS AUTHORS README
+%doc COPYING NEWS TODO THANKS AUTHORS README
 %{_libdir}/*.so.*
 %{_prefix}/lib/udev/rules.d/60-fprint-autosuspend.rules
 
@@ -66,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Thu Jan 16 2014 Ville Skyttä <ville.skytta@iki.fi> - 0.5.1-2
+- Drop INSTALL from docs.
+
 * Sun Aug 11 2013 Bastien Nocera <bnocera@redhat.com> 0.5.1-1
 - Update to 0.5.1
 
