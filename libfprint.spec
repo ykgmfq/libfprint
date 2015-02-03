@@ -1,6 +1,6 @@
 Name:           libfprint
-Version:        0.5.1
-Release:        5%{?dist}
+Version:        0.6.0
+Release:        1%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -9,9 +9,6 @@ URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
 Source0:        http://freedesktop.org/~hadess/%{name}-%{version}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExcludeArch:    s390 s390x
-
-# https://bugzilla.redhat.com/show_bug.cgi?id=950205
-Patch1: 0001-udev-rules-add-TEST-power-control.patch
 
 BuildRequires:  libusb1-devel glib2-devel gtk2-devel nss-devel
 BuildRequires:  doxygen autoconf automake libtool
@@ -33,8 +30,6 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-
-%patch1 -p1 -b .0001
 
 %build
 %configure --disable-silent-rules --disable-static
@@ -71,6 +66,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Feb 03 2015 Bastien Nocera <bnocera@redhat.com> 0.6.0-1
+- Update to 0.6.0
+
 * Wed Dec 17 2014 Rex Dieter <rdieter@fedoraproject.org> - 0.5.1-5
 - error opening ATTR{/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.3/1-1.3:1.0/power/control} for writing (#950205)
 - %%build: --disable-silent-rules
