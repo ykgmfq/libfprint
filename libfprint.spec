@@ -1,16 +1,16 @@
 Name:           libfprint
-Version:        0.6.0
-Release:        4%{?dist}
+Version:        0.7.0
+Release:        1%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
-Source0:        http://freedesktop.org/~hadess/%{name}-%{version}.tar.xz
+Source0:        http://freedesktop.org/~anarsoul/%{name}-%{version}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExcludeArch:    s390 s390x
 
-BuildRequires:  libusb1-devel glib2-devel gtk2-devel nss-devel
+BuildRequires:  libusb1-devel glib2-devel nss-devel
 BuildRequires:  doxygen autoconf automake libtool
 
 %description
@@ -66,6 +66,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Mon May 15 2017 Bastien Nocera <bnocera@redhat.com> - 0.7.0-1
++ libfprint-0.7.0-1
+- Update to 0.7.0
+
 * Fri Feb 10 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.6.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
 
