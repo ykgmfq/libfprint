@@ -10,7 +10,7 @@ Source0:        http://freedesktop.org/~anarsoul/%{name}-%{version}.tar.xz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExcludeArch:    s390 s390x
 
-BuildRequires:  libusb1-devel glib2-devel nss-devel
+BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel
 BuildRequires:  doxygen autoconf automake libtool
 
 %description
