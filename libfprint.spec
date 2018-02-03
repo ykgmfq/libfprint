@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.7.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -21,8 +21,7 @@ libfprint offers support for consumer fingerprint reader devices.
 %package        devel
 Summary:        Development files for %{name}
 Group:          Development/Libraries
-Requires:       %{name} = %{version}-%{release}
-Requires:       pkgconfig
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 
 
 %description    devel
@@ -45,29 +44,24 @@ rm -rf $RPM_BUILD_ROOT
 make install DESTDIR=$RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
+%ldconfig_scriptlets
 
 %files
-%defattr(-,root,root,-)
-%doc COPYING NEWS TODO THANKS AUTHORS README
+%license COPYING
+%doc NEWS TODO THANKS AUTHORS README
 %{_libdir}/*.so.*
-%{_prefix}/lib/udev/rules.d/60-fprint-autosuspend.rules
+%{_udevrulesdir}/60-fprint-autosuspend.rules
 
 %files devel
-%defattr(-,root,root,-)
 %doc HACKING doc/html
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Sat Feb 03 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.7.0-4
+- Switch to %%ldconfig_scriptlets
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
