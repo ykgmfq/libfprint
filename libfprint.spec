@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.7.0
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -59,6 +59,9 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.0-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Sat Feb 03 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 0.7.0-4
 - Switch to %%ldconfig_scriptlets
 
