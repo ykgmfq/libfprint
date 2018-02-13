@@ -7,7 +7,6 @@ Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
 Source0:        http://freedesktop.org/~anarsoul/%{name}-%{version}.tar.xz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExcludeArch:    s390 s390x
 
 BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel
