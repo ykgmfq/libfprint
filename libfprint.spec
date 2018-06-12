@@ -1,12 +1,12 @@
 Name:           libfprint
-Version:        0.8.0
+Version:        0.8.1
 Release:        1%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
-Source0:        https://gitlab.freedesktop.org/libfprint/libfprint/uploads/b1242bedcf0d329ad2efe7ae29466ca2/%{name}-%{version}.tar.xz
+Source0:        https://gitlab.freedesktop.org/libfprint/libfprint/uploads/a6084497941324538aefbdf7b954f1e9/%{name}-%{version}.tar.xz
 ExcludeArch:    s390 s390x
 
 BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel
@@ -47,12 +47,17 @@ developing applications that use %{name}.
 %{_udevrulesdir}/60-fprint-autosuspend.rules
 
 %files devel
-%doc HACKING doc/html
+%doc HACKING.md
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/%{name}.pc
+%{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Tue Jun 12 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.1-1
++ libfprint-0.8.1-1
+- Update to 0.8.1 to fix the build
+
 * Tue Jun 12 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.0-1
 + libfprint-0.8.0-1
 - Update to 0.8.0
