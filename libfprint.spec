@@ -1,19 +1,18 @@
 Name:           libfprint
-Version:        0.7.0
-Release:        3%{?dist}
+Version:        0.8.1
+Release:        1%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
-Source0:        http://freedesktop.org/~anarsoul/%{name}-%{version}.tar.xz
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+Source0:        https://gitlab.freedesktop.org/libfprint/libfprint/uploads/a6084497941324538aefbdf7b954f1e9/%{name}-%{version}.tar.xz
 ExcludeArch:    s390 s390x
 
 BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel
 # For the udev.pc to install the rules
 BuildRequires:  systemd
-BuildRequires:  doxygen autoconf automake libtool
+BuildRequires:  gtk-doc meson
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -34,16 +33,11 @@ developing applications that use %{name}.
 %setup -q
 
 %build
-%configure --disable-silent-rules --disable-static
-make %{?_smp_mflags}
-pushd doc
-make docs
-popd
+%meson -Dx11-examples=false
+%meson_build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+%meson_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -62,12 +56,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(-,root,root,-)
-%doc HACKING doc/html
+%doc HACKING.md
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/pkgconfig/%{name}.pc
+%{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Tue Jun 12 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.1-1
++ libfprint-0.8.1-1
+- Port to meson and gtk-doc
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.0-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
