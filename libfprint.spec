@@ -1,18 +1,18 @@
 Name:           libfprint
-Version:        0.7.0
-Release:        5%{?dist}
+Version:        0.8.0
+Release:        1%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
-Source0:        http://freedesktop.org/~anarsoul/%{name}-%{version}.tar.xz
+Source0:        https://gitlab.freedesktop.org/libfprint/libfprint/uploads/b1242bedcf0d329ad2efe7ae29466ca2/%{name}-%{version}.tar.xz
 ExcludeArch:    s390 s390x
 
 BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel
 # For the udev.pc to install the rules
 BuildRequires:  systemd
-BuildRequires:  doxygen autoconf automake libtool
+BuildRequires:  gtk-doc meson
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -32,16 +32,11 @@ developing applications that use %{name}.
 %setup -q
 
 %build
-%configure --disable-silent-rules --disable-static
-make %{?_smp_mflags}
-pushd doc
-make docs
-popd
+%meson -Dx11-examples=false
+%meson_build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
-find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+%meson_install
 
 %ldconfig_scriptlets
 
@@ -58,6 +53,11 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Tue Jun 12 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.0-1
++ libfprint-0.8.0-1
+- Update to 0.8.0
+- Port to meson, gtk-doc
+
 * Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.7.0-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
 
