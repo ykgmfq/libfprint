@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.8.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 Group:          System Environment/Libraries
@@ -54,6 +54,9 @@ developing applications that use %{name}.
 %{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.1-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Tue Jun 12 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.1-1
 + libfprint-0.8.1-1
 - Update to 0.8.1 to fix the build
