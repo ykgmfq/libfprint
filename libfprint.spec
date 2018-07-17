@@ -9,7 +9,7 @@ URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
 Source0:        https://gitlab.freedesktop.org/libfprint/libfprint/uploads/a6084497941324538aefbdf7b954f1e9/%{name}-%{version}.tar.xz
 ExcludeArch:    s390 s390x
 
-BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel
+BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel gcc
 # For the udev.pc to install the rules
 BuildRequires:  systemd
 BuildRequires:  gtk-doc meson
@@ -57,6 +57,7 @@ developing applications that use %{name}.
 * Tue Jul 17 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.2-1
 + libfprint-0.8.2-1
 - Update to 0.8.2
+- Add required gcc BR
 
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
