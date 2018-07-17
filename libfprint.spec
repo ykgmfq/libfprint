@@ -12,7 +12,9 @@ ExcludeArch:    s390 s390x
 BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel
 # For the udev.pc to install the rules
 BuildRequires:  systemd
-BuildRequires:  gtk-doc meson
+BuildRequires:  gtk-doc meson git
+
+Patch0: 0001-drivers-Include-string.h-in-a-number-of-drivers.patch
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -30,7 +32,7 @@ developing applications that use %{name}.
 
 
 %prep
-%setup -q
+%autosetup -S git
 
 %build
 %meson -Dx11-examples=false

@@ -1,0 +1,54 @@
+From e67a281d78f91817d7508ce14d6b3bd28da7efaf Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Tue, 17 Jul 2018 15:53:43 +0200
+Subject: [PATCH] drivers: Include <string.h> in a number of drivers
+
+To be able to compile on older toolchains like that of Fedora 27.
+---
+ libfprint/drivers/upeksonly.c | 2 ++
+ libfprint/drivers/upektc.c    | 2 ++
+ libfprint/drivers/upekts.c    | 2 ++
+ 3 files changed, 6 insertions(+)
+
+diff --git a/libfprint/drivers/upeksonly.c b/libfprint/drivers/upeksonly.c
+index 9cccb86..f6077a1 100644
+--- a/libfprint/drivers/upeksonly.c
++++ b/libfprint/drivers/upeksonly.c
+@@ -28,6 +28,8 @@
+ #include "drivers_api.h"
+ #include "upeksonly.h"
+ 
++#include <string.h>
++
+ #define CTRL_TIMEOUT	1000
+ #define NUM_BULK_TRANSFERS 24
+ #define MAX_ROWS 2048
+diff --git a/libfprint/drivers/upektc.c b/libfprint/drivers/upektc.c
+index ffa31f3..0d71e6c 100644
+--- a/libfprint/drivers/upektc.c
++++ b/libfprint/drivers/upektc.c
+@@ -23,6 +23,8 @@
+ #include "drivers_api.h"
+ #include "upektc.h"
+ 
++#include <string.h>
++
+ #define UPEKTC_EP_IN (2 | LIBUSB_ENDPOINT_IN)
+ #define UPEKTC_EP_OUT (3 | LIBUSB_ENDPOINT_OUT)
+ #define UPEKET_EP_IN (1 | LIBUSB_ENDPOINT_IN)
+diff --git a/libfprint/drivers/upekts.c b/libfprint/drivers/upekts.c
+index b448e36..9f7f8fd 100644
+--- a/libfprint/drivers/upekts.c
++++ b/libfprint/drivers/upekts.c
+@@ -29,6 +29,8 @@
+ 
+ #include "drivers_api.h"
+ 
++#include <string.h>
++
+ #define EP_IN (1 | LIBUSB_ENDPOINT_IN)
+ #define EP_OUT (2 | LIBUSB_ENDPOINT_OUT)
+ #define TIMEOUT 5000
+-- 
+2.17.1
+
