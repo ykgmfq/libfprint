@@ -1,5 +1,5 @@
 Name:           libfprint
-Version:        0.8.1
+Version:        0.8.2
 Release:        1%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
@@ -63,6 +63,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Tue Jul 17 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.2-1
++ libfprint-0.8.2-1
+- Update to 0.8.2
+
 * Tue Jun 12 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.1-1
 + libfprint-0.8.1-1
 - Port to meson and gtk-doc
