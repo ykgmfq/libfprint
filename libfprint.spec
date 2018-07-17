@@ -14,7 +14,7 @@ BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel
 BuildRequires:  systemd
 BuildRequires:  gtk-doc meson git
 
-Patch0: 0001-lib-Include-string.h-for-drivers-to-use.patch
+Patch0: 0001-lib-Include-more-standard-headers-for-drivers-to-use.patch
 
 %description
 libfprint offers support for consumer fingerprint reader devices.

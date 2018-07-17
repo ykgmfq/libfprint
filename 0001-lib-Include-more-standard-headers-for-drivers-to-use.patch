@@ -1,0 +1,27 @@
+From 626b0f1a8fbf2e3acf8f3d2de411141bc3f6e913 Mon Sep 17 00:00:00 2001
+From: Bastien Nocera <hadess@hadess.net>
+Date: Tue, 17 Jul 2018 16:02:26 +0200
+Subject: [PATCH] lib: Include more standard headers for drivers to use
+
+Such as string.h and stdlib.h, to be able to compile on older
+toolchains like that of Fedora 27.
+---
+ libfprint/drivers_api.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/libfprint/drivers_api.h b/libfprint/drivers_api.h
+index 2679c77..cc844cd 100644
+--- a/libfprint/drivers_api.h
++++ b/libfprint/drivers_api.h
+@@ -30,6 +30,8 @@
+ 
+ #include <stdint.h>
+ #include <errno.h>
++#include <string.h>
++#include <stdlib.h>
+ #include <glib.h>
+ #include <libusb.h>
+ 
+-- 
+2.17.1
+
