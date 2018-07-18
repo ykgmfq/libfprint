@@ -8,10 +8,16 @@ URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
 Source0:        https://gitlab.freedesktop.org/libfprint/libfprint/uploads/a6084497941324538aefbdf7b954f1e9/%{name}-%{version}.tar.xz
 ExcludeArch:    s390 s390x
 
-BuildRequires:  libusb1-devel glib2-devel nss-devel pixman-devel gcc gcc-c++
+BuildRequires:  meson
+BuildRequires:  gcc
+BuildRequires:  gcc-c++
+BuildRequires:  pkgconfig(glib-2.0) >= 2.28
+BuildRequires:  pkgconfig(libusb-1.0) >= 0.9.1
+BuildRequires:  pkgconfig(nss)
+BuildRequires:  pkgconfig(pixman-1)
+BuildRequires:  gtk-doc
 # For the udev.pc to install the rules
 BuildRequires:  systemd
-BuildRequires:  gtk-doc meson
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -20,11 +26,9 @@ libfprint offers support for consumer fingerprint reader devices.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
-
 %description    devel
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
-
 
 %prep
 %setup -q
