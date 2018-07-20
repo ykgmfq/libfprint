@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.8.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 License:        LGPLv2+
@@ -11,6 +11,7 @@ ExcludeArch:    s390 s390x
 BuildRequires:  meson
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
+BuildRequires:  git
 BuildRequires:  pkgconfig(glib-2.0) >= 2.28
 BuildRequires:  pkgconfig(libusb-1.0) >= 0.9.1
 BuildRequires:  pkgconfig(nss)
@@ -18,6 +19,8 @@ BuildRequires:  pkgconfig(pixman-1)
 BuildRequires:  gtk-doc
 # For the udev.pc to install the rules
 BuildRequires:  systemd
+
+Patch0: 0001-build-Fix-build-with-newer-meson.patch
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -31,7 +34,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%setup -q
+%autosetup -S git
 
 %build
 %meson -Dx11-examples=false
@@ -56,6 +59,10 @@ developing applications that use %{name}.
 %{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Fri Jul 20 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.2-2
++ libfprint-0.8.2-2
+- Fix build with newer meson (#1604585)
+
 * Tue Jul 17 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.2-1
 + libfprint-0.8.2-1
 - Update to 0.8.2
