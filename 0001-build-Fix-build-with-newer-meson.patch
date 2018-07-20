@@ -12,23 +12,9 @@ See https://gitlab.gnome.org/GNOME/gtk-doc/issues/48
 See https://github.com/mesonbuild/meson/issues/3892
 See https://bugzilla.redhat.com/show_bug.cgi?id=1604585
 ---
- .gitlab-ci.yml  | 2 +-
  doc/meson.build | 1 -
  2 files changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/.gitlab-ci.yml b/.gitlab-ci.yml
-index 91bc1a9..05e8306 100644
---- a/.gitlab-ci.yml
-+++ b/.gitlab-ci.yml
-@@ -8,7 +8,7 @@ variables:
- 
- 
- before_script:
--  - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck $DEPENDENCIES && rpm -Uvh --oldpackage https://kojipkgs.fedoraproject.org//packages/meson/0.46.1/2.fc29/noarch/meson-0.46.1-2.fc29.noarch.rpm
-+  - dnf update -y --nogpgcheck && dnf install -y --nogpgcheck $DEPENDENCIES
- 
- 
- build:
 diff --git a/doc/meson.build b/doc/meson.build
 index 48358c8..c2c1b77 100644
 --- a/doc/meson.build
