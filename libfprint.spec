@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        0.8.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 License:        LGPLv2+
@@ -59,6 +59,9 @@ developing applications that use %{name}.
 %{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.2-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Fri Jul 20 2018 Bastien Nocera <bnocera@redhat.com> - 0.8.2-2
 + libfprint-0.8.2-2
 - Fix build with newer meson (#1604585)
