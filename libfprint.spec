@@ -1,6 +1,6 @@
 Name:           libfprint
-Version:        0.8.2
-Release:        4%{?dist}
+Version:        1.0
+Release:        1%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 License:        LGPLv2+
@@ -19,8 +19,6 @@ BuildRequires:  pkgconfig(pixman-1)
 BuildRequires:  gtk-doc
 # For the udev.pc to install the rules
 BuildRequires:  systemd
-
-Patch0: 0001-build-Fix-build-with-newer-meson.patch
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -59,6 +57,10 @@ developing applications that use %{name}.
 %{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Wed Aug 14 2019 Benjamin Berg <bberg@redhat.com> - 1.0-1
++ libfprint-1.0-1
+- Update to 1.0
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.8.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
