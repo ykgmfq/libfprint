@@ -1,24 +1,33 @@
 Name:           libfprint
-Version:        1.0
-Release:        1%{?dist}
+
+%global commit 63f7616938aabeb00f23e9268253887d45429527
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+
+Version:        1.90.0
+Release:        0.20191008git%{shortcommit}%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 License:        LGPLv2+
 URL:            http://www.freedesktop.org/wiki/Software/fprint/libfprint
-Source0:        https://gitlab.freedesktop.org/libfprint/libfprint/uploads/a6084497941324538aefbdf7b954f1e9/%{name}-%{version}.tar.xz
+Source0:        https://gitlab.freedesktop.org/libfprint/libfprint/-/archive/%{commit}/%{name}-%{shortcommit}.tar.gz
 ExcludeArch:    s390 s390x
 
 BuildRequires:  meson
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  git
-BuildRequires:  pkgconfig(glib-2.0) >= 2.28
-BuildRequires:  pkgconfig(libusb-1.0) >= 0.9.1
+BuildRequires:  pkgconfig(glib-2.0) >= 2.50
+BuildRequires:  pkgconfig(gio-2.0) >= 2.44.0
+BuildRequires:  libgusb-devel >= 0.3.0
 BuildRequires:  pkgconfig(nss)
 BuildRequires:  pkgconfig(pixman-1)
 BuildRequires:  gtk-doc
 # For the udev.pc to install the rules
 BuildRequires:  systemd
+BuildRequires:  gobject-introspection-devel
+# For internal CI tests
+#BuildRequires:  python3-cairo python3-gobject
+#BuildRequires:  umockdev
 
 %description
 libfprint offers support for consumer fingerprint reader devices.
@@ -32,10 +41,11 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %prep
-%autosetup -S git
+%autosetup -n libfprint-%{commit}
 
 %build
-%meson -Dx11-examples=false
+# Include the virtual image driver for integration tests
+%meson -Dx11-examples=false -Ddrivers=all
 %meson_build
 
 %install
@@ -43,20 +53,30 @@ developing applications that use %{name}.
 
 %ldconfig_scriptlets
 
+# Disabled until a fixed version of umockdev hits fedora
+%check
+exit 0
+#%meson_test
+
 %files
 %license COPYING
 %doc NEWS TODO THANKS AUTHORS README
 %{_libdir}/*.so.*
-%{_udevrulesdir}/60-fprint-autosuspend.rules
+%{_libdir}/girepository-1.0/*.typelib
+%{_udevrulesdir}/60-fprint2-autosuspend.rules
 
 %files devel
 %doc HACKING.md
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/pkgconfig/%{name}.pc
+%{_libdir}/pkgconfig/%{name}2.pc
+%{_datadir}/gir-1.0/*.gir
 %{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Tue Oct 08 2019 Benjamin Berg <bberg@redhat.com> - 1.90.0-0.20191008git%{shortcommit}
+- git snapshot build of libfprint 1.90.0
+
 * Wed Aug 14 2019 Benjamin Berg <bberg@redhat.com> - 1.0-1
 + libfprint-1.0-1
 - Update to 1.0
