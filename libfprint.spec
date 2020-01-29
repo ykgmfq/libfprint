@@ -1,6 +1,6 @@
 Name:           libfprint
 Version:        1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Toolkit for fingerprint scanner
 
 License:        LGPLv2+
@@ -57,6 +57,9 @@ developing applications that use %{name}.
 %{_datadir}/gtk-doc/html/libfprint/
 
 %changelog
+* Wed Jan 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 1.0-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Wed Aug 14 2019 Benjamin Berg <bberg@redhat.com> - 1.0-1
 + libfprint-1.0-1
 - Update to 1.0
